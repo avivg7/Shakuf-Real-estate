@@ -105,13 +105,14 @@ public class ApartmentManager {
 		
 		try {
 			
-			String userSelection = this.getUserSelection(
-					options, 
-					"Please select the type of apartment you would like to add to the apartment database", 
-					"Menu"
-				);
-			
 			while(!_stopRunningMunu) {
+				
+				String userSelection = this.getUserSelection(
+						options, 
+						"Please select the type of apartment you would like to add to the apartment database", 
+						"Menu"
+					);
+				
 				// Switch case that represents every option on the menu
 				switch ( userSelection ) {
 					case "Add new apartment":
@@ -162,7 +163,7 @@ public class ApartmentManager {
 			 String _rentlStartDate;
 			 String _rentalEndDate;
 			
-			 // Create panels for the GUI	
+			// Create panels for the GUI	
 			 JPanel panel = new JPanel(new BorderLayout(5, 5));   
 			 JPanel label = new JPanel(new GridLayout(0, 1, 2, 2));
 			 JPanel controls = new JPanel(new GridLayout(0, 1, 2, 2));
@@ -254,8 +255,7 @@ public class ApartmentManager {
 							);
 						
 						JOptionPane.showMessageDialog(null, "Apartment added successfully");
-					}
-				    			
+					}			
 			    break;
 				case "Apartment For Sall":
 					// String array for the labels
@@ -266,7 +266,7 @@ public class ApartmentManager {
 					         "Client Name",
 					         "Price",
 					         "Offered Price",
-					         "Entry Date dd-mm-yyyy" 
+					         "Entry Date dd-mm-yyyy"
 				         };
 					
 					// Create the labels for the GUI
