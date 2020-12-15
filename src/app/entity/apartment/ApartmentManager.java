@@ -6,6 +6,10 @@ import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
+
+import app.KeyValue;
+
 
 /**
  * TODO
@@ -146,6 +150,70 @@ public class ApartmentManager {
 			JOptionPane.showMessageDialog(null, "Thank you and goodbye");
 		}
 	}
+	
+	public Map<String, JPanel> _getApartmentGUIManager( String[] LABEL_TEXTS_RENT ) {
+		
+		Map<String, JPanel> hm = new HashMap<>();
+		
+		// Create panels for the GUI	
+		JPanel panel = new JPanel(new BorderLayout(5, 5));   
+		JPanel label = new JPanel(new GridLayout(0, 1, 2, 2));
+		JPanel controls = new JPanel(new GridLayout(0, 1, 2, 2));
+		
+		
+		// Create the labels for the GUI
+	    for (int i = 0; i < LABEL_TEXTS_RENT.length; i++) {
+	    	label.add(new JLabel(LABEL_TEXTS_RENT[i], SwingConstants.RIGHT));
+	    }
+	    
+	    // Add boarder for the labels
+	    panel.add(label, BorderLayout.WEST);
+	    
+	    // Create the text fields for the GUI
+//	    JTextField address = new JTextField();
+//	    JTextField squareMeter = new JTextField();
+//	    JTextField numberOfRooms = new JTextField();
+//	    JTextField clientName = new JTextField();
+//	    JTextField price = new JTextField();
+//	    
+//	    controls.add(address);
+//	    controls.add(squareMeter);
+//	    controls.add(numberOfRooms);
+//	    controls.add(clientName);
+//	    controls.add(price);
+	    
+	    // Add boarder for the text fields
+	    //panel.add(controls, BorderLayout.CENTER);
+	    
+	    // Run GUI
+	    //JOptionPane.showConfirmDialog(null, panel, confirmDialogText, JOptionPane.OK_CANCEL_OPTION);
+		
+		hm.put("panel",panel);
+		hm.put("label",label);
+		hm.put("controls",controls);
+		
+		//Map<String, Object> fields = new HashMap<>();
+		
+	    // Take input from the text fields
+		/*
+		 * fields.put("address", address.getText().toString() );
+		 * fields.put("squareMeter",
+		 * Double.parseDouble(squareMeter.getText().toString()) );
+		 * fields.put("numberOfRooms",
+		 * Integer.parseInt(numberOfRooms.getText().toString() ) );
+		 * fields.put("clientName", clientName.getText().toString() );
+		 * fields.put("price", Double.parseDouble(price.getText().toString() ) );
+		 * 
+		 * hm.put("fields",controls);
+		 */
+		
+		return hm;
+	}
+	
+	public static void showApartmentConfirmDialog( JPanel panel, String confirmText ) {
+	
+		   JOptionPane.showConfirmDialog(null, panel, confirmText, JOptionPane.OK_CANCEL_OPTION);
+	}
 	 
 	/**
 	 * Add new apartment to the list
@@ -162,11 +230,17 @@ public class ApartmentManager {
 			 String _entryDate; 
 			 String _rentlStartDate;
 			 String _rentalEndDate;
+			 
+	
 			
 			// Create panels for the GUI	
-			 JPanel panel = new JPanel(new BorderLayout(5, 5));   
-			 JPanel label = new JPanel(new GridLayout(0, 1, 2, 2));
-			 JPanel controls = new JPanel(new GridLayout(0, 1, 2, 2));
+			 //JPanel panel = new JPanel(new BorderLayout(5, 5));
+			 //JPanel label = new JPanel(new GridLayout(0, 1, 2, 2));
+			 //JPanel controls = new JPanel(new GridLayout(0, 1, 2, 2));
+			 
+			 JPanel panel, label, controls;
+			 
+			 Map<String, JPanel> apartmentGUIManager
 			 
 			// String array for the labels
 			String[] options = {"Apartment For Sall", "Apartment For Rent"};
@@ -181,16 +255,25 @@ public class ApartmentManager {
 			switch ( userSelection) {
 				case "Apartment For Rent":
 					
+					
 					// String array for the labels
 					String[] LABEL_TEXTS_RENT = { "Address",
 					         "Square Meter", "number Of Rooms", "Client Name", "Price", "Start Date dd-mm-yyyy", "End Date dd-mm-yyyy" };
 					
+					 apartmentGUIManager = this._getApartmentGUIManager(LABEL_TEXTS_RENT);
+					 
+					
 					// Create the labels for the GUI
-				    for (int i = 0; i < LABEL_TEXTS_RENT.length; i++) 
-				    	label.add(new JLabel(LABEL_TEXTS_RENT[i], SwingConstants.RIGHT));
+					/*
+					 * for (int i = 0; i < LABEL_TEXTS_RENT.length; i++) { label.add(new
+					 * JLabel(LABEL_TEXTS_RENT[i], SwingConstants.RIGHT)); }
+					 */
 				    
 				    // Add boarder for the labels
-				    panel.add(label, BorderLayout.WEST);
+				    //panel.add(label, BorderLayout.WEST);
+					panel = apartmentGUIManager.get("panel");
+					label = apartmentGUIManager.get("label");
+					controls = apartmentGUIManager.get("controls");
 				    
 				    // Create the text fields for the GUI
 				    JTextField addressRent = new JTextField();
@@ -211,8 +294,10 @@ public class ApartmentManager {
 				    // Add boarder for the text fields
 				    panel.add(controls, BorderLayout.CENTER);
 				    
+				    showApartmentConfirmDialog(panel, "Create a new Sell Apartment");
+				    
 				    // Run GUI
-				    JOptionPane.showConfirmDialog(null, panel, "Create a new Sell Apartment", JOptionPane.OK_CANCEL_OPTION);
+				    //JOptionPane.showConfirmDialog(null, panel, "Create a new Sell Apartment", JOptionPane.OK_CANCEL_OPTION);
 				    
 				    // Take input from the text fields
 				    _address = addressRent.getText().toString();
@@ -258,6 +343,7 @@ public class ApartmentManager {
 					}			
 			    break;
 				case "Apartment For Sall":
+					
 					// String array for the labels
 					String[] LABEL_TEXTS_SALL = {
 							"Address",
@@ -269,13 +355,17 @@ public class ApartmentManager {
 					         "Entry Date dd-mm-yyyy"
 				         };
 					
+					
+					apartmentGUIManager = this._getApartmentGUIManager(LABEL_TEXTS_RENT);
+					
 					// Create the labels for the GUI
-				    for (int i = 0; i < LABEL_TEXTS_SALL.length; i++) {
-				    	label.add( new JLabel(LABEL_TEXTS_SALL[i], SwingConstants.RIGHT) );
-				    }
+					/*
+					 * for (int i = 0; i < LABEL_TEXTS_SALL.length; i++) { label.add( new
+					 * JLabel(LABEL_TEXTS_SALL[i], SwingConstants.RIGHT) ); }
+					 */
 	
 				    // Add boarder for the labels
-				    panel.add(label, BorderLayout.WEST);
+				    //panel.add(label, BorderLayout.WEST);
 				    
 				    // Create the text fields for the GUI
 				    JTextField addressSall = new JTextField();
@@ -295,9 +385,12 @@ public class ApartmentManager {
 				    
 				    // Add boarder for the text fields
 				    panel.add(controls, BorderLayout.CENTER);
+				    
+				    
+				    showApartmentConfirmDialog(panel,  "Create a new Sell Apartment");
 	
 				    // Run GUI
-				    JOptionPane.showConfirmDialog(null, panel, "Create a new Sell Apartment", JOptionPane.OK_CANCEL_OPTION);
+				    //JOptionPane.showConfirmDialog(null, panel, "Create a new Sell Apartment", JOptionPane.OK_CANCEL_OPTION);
 				    
 				    // Take input from the text fields
 				    _address = addressSall.getText().toString();
