@@ -1,0 +1,101 @@
+package app.entity.apartment;
+
+import app.entity.Entity;
+
+// Father class Apartment
+public abstract class Apartment extends Entity {
+
+	private String _address;
+	private double _squareMeter;
+	private int _numberOfRooms;
+	private String _clientName;
+	private double _price;
+	
+	
+	public Apartment(String _address, long _id, double _squareMeter, int _numberOfRooms, String _clientName, double _price) {
+		super(_id);
+		this._address = _address;
+		this._squareMeter = _squareMeter;
+		this._numberOfRooms = _numberOfRooms;
+		this._clientName = _clientName;
+		this._price = _price;
+	}
+	
+	// Method that update the apartment's values
+	public abstract void updateApartment();
+	
+	/**
+	 * 
+	 * 
+	 * @param double squareMeter -
+	 * @param int numberOfRooms -
+	 * @param double price -
+	 * @param String address -
+	 * @param String clientName -
+	 * 
+	 * @return boolean -
+	 */
+	public static boolean isValidFields( double squareMeter, int numberOfRooms, double price, String address, String clientName ) {
+		return (
+			squareMeter >= 1 ||
+    		numberOfRooms >= 1 ||
+    		price >= 1 ||
+    		address.length() >= 1 ||
+    		clientName.length() >= 1
+		);
+	}
+
+	// Object cloning refers to creation of exact copy of an object
+	@Override
+	public Apartment clone() throws CloneNotSupportedException {
+	return (Apartment)super.clone();
+	}
+	
+	@Override
+	public String toString() {
+		return "Apartment [ ID: " + super.ID + ", Address: " + _address + ", Square Meter: " + _squareMeter
+				+ ", Number Of Rooms: " + _numberOfRooms + ", Client Name: " + _clientName + ", Price: " + _price + ", ";
+	}
+
+	public String get_address() {
+		return _address;
+	}
+
+	public void set_address(String _address) {
+		this._address = _address;
+	}
+
+	public double get_squareMeter() {
+		return _squareMeter;
+	}
+
+	public void set_squareMeter(double _squareMeter) {
+		this._squareMeter = _squareMeter;
+	}
+
+	public int get_numberOfRooms() {
+		return _numberOfRooms;
+	}
+
+	public void set_numberOfRooms(int _numberOfRooms) {
+		this._numberOfRooms = _numberOfRooms;
+	}
+
+	public String get_clientName() {
+		return _clientName;
+	}
+
+	public void set_clientName(String _clientName) {
+		this._clientName = _clientName;
+	}
+
+	public double get_price() {
+		return _price;
+	}
+
+	public void set_price(double _price) {
+		this._price = _price;
+	}
+	
+
+}
