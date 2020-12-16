@@ -1,5 +1,5 @@
 package app.entity.apartment;
-import app.GUI_Opetator;
+import app.GUI_Operator;
 
 /**
  * This class represent the sale type of Apartment
@@ -32,8 +32,8 @@ public class SellApartment extends Apartment {
 	 */
 	@Override
 	public String toString() {
-		return "Sell " + super.toString() +"Offered Price=" + _offeredPrice
-				+ ", Entry Date=" + _entryDate + "]\n";
+		return "Sell " + super.toString() +",\nOffered Price=" + _offeredPrice
+				+ ",\nEntry Date=" + _entryDate + "\n";
 	}
 	
 	/**
@@ -78,7 +78,7 @@ public class SellApartment extends Apartment {
 		         };
 			
 			// Create and run GUI
-			GUI_Opetator GUI = new GUI_Opetator(LABEL_TEXTS_SALL, "Update apartment values");
+			GUI_Operator GUI = new GUI_Operator(LABEL_TEXTS_SALL, "Update apartment values");
 			
 		    // Take input from the text fields 
 		     String address = GUI.extractor("Address");
@@ -86,14 +86,14 @@ public class SellApartment extends Apartment {
 			 int numberOfRooms = Integer.parseInt(GUI.extractor("Number Of Rooms"));
 			 String clientName = GUI.extractor("Client Name");
 			 double price = Double.parseDouble(GUI.extractor("Price")); 
-			 double offeredPrice = Double.parseDouble("Offered Price"); 
+			 double offeredPrice = Double.parseDouble(GUI.extractor("Offered Price")); 
 			 String entryDate = GUI.extractor("Entry Date (dd-mm-yyyy)");
 		    
 			 // Check for invalid input
 			 if(
 				 !SellApartment.isValidFields( squareMeter, numberOfRooms, price, address, clientName,entryDate, offeredPrice)
 				){    	
-				 		GUI_Opetator.showGUI_Massage("The action failed, you enterd invalid input");
+				 		GUI_Operator.showGUI_Massage("The action failed, you enterd invalid input");
 			 } else { // Set new values
 				this.set_address(address);
 			    this.set_squareMeter(squareMeter);
@@ -103,12 +103,12 @@ public class SellApartment extends Apartment {
 			    this.set_offeredPrice(offeredPrice);
 			    this.set_entryDate(entryDate);
 			    
-			    GUI_Opetator.showGUI_Massage("Successfully updated");
+			    GUI_Operator.showGUI_Massage("Successfully updated");
 			}
 		  	    
 		} catch (Exception e) {
 			// In case of exception the user will see the next massage
-			GUI_Opetator.showGUI_Massage("The action failed, please fill in all the fields before sending the update");
+			GUI_Operator.showGUI_Massage("The action failed, please fill in all the fields before sending the update");
 		} 
 		
 	}
@@ -129,6 +129,14 @@ public class SellApartment extends Apartment {
 	
 	public void set_entryDate(String _entryDate) {
 		this._entryDate = _entryDate;
+	}
+
+	/**
+	 * @return String - The type of the Apartment (Apartment for sell)
+	 */
+	@Override
+	public String getType() {
+		return "Apartment for sell";
 	}
 	
 	

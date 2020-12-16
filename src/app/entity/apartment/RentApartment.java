@@ -1,6 +1,6 @@
 package app.entity.apartment;
 
-import app.GUI_Opetator;
+import app.GUI_Operator;
 
 /**
  * 
@@ -35,8 +35,8 @@ public class RentApartment extends Apartment {
 	 */
 	@Override
 	public String toString() {
-		return "Rent " + super.toString() + ", Rental Start Date:" + _rentalStartDate
-				+ ", Rental End Date:" + _rentalEndDate + "]\n";
+		return "Rent " + super.toString() + ",\nRental Start Date:" + _rentalStartDate
+				+ ",\nRental End Date:" + _rentalEndDate + "\n";
 	}
 	
 	/**
@@ -80,7 +80,7 @@ public class RentApartment extends Apartment {
 		         };
 			
 			// Create and run GUI
-			GUI_Opetator GUI = new GUI_Opetator(LABEL_TEXTS_RENT, "Update apartment values");
+			GUI_Operator GUI = new GUI_Operator(LABEL_TEXTS_RENT, "Update apartment values");
 			
 		    // Take input from the text fields
 		     String address = GUI.extractor("Address");
@@ -96,7 +96,7 @@ public class RentApartment extends Apartment {
 		    	!RentApartment.isValidFields( squareMeter, numberOfRooms, price, address, clientName,rentalStartDate, rentalEndDate)
 		    	){
 		    	
-			    GUI_Opetator.showGUI_Massage("The action failed, you enterd invalid input");
+			    GUI_Operator.showGUI_Massage("The action failed, you enterd invalid input");
 			} else { // Set new values
 				this.set_address(address);
 			    this.set_squareMeter(squareMeter);
@@ -106,12 +106,12 @@ public class RentApartment extends Apartment {
 			    this.set_rentlStartDate(rentalStartDate);
 			    this.set_rentalEndDate(rentalEndDate);
 			    
-			    GUI_Opetator.showGUI_Massage("Successfully updated");
+			    GUI_Operator.showGUI_Massage("Successfully updated");
 			}		    
 		    
 		} catch (Exception e) {
 			// In case of exception the user will see the next massage
-			GUI_Opetator.showGUI_Massage("The action failed, please fill in all the fields before sending the update");
+			GUI_Operator.showGUI_Massage("The action failed, please fill in all the fields before sending the update");
 		}
 		
 	}
@@ -130,6 +130,13 @@ public class RentApartment extends Apartment {
 
 	public void set_rentalEndDate(String _rentalEndDate) {
 		this._rentalEndDate = _rentalEndDate;
+	}
+	/**
+	 * @return String - The type of the apartment (Apartment for rent)
+	 */
+	@Override
+	public String getType() {
+		return "Apartment for rent";
 	}
 	
 

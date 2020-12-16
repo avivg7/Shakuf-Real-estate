@@ -17,7 +17,7 @@ import app.entity.apartment.ApartmentManager;
 /**
  * class that operate the GUI and return a clean input 
  */
-public class GUI_Opetator {
+public class GUI_Operator {
 
 	/**
 	 * @param Jpanel - The panel of the GUI responsible of its borders and background
@@ -48,7 +48,7 @@ public class GUI_Opetator {
 	 * @param String - LABEL_TEXTS - the labels that will show in the GUI near to the text field 
 	 * @param String - GUI_Text - the text that will show on the top of the window of the GUI
 	 */
-	public GUI_Opetator(String[] LABEL_TEXTS, String GUI_Text) {
+	public GUI_Operator(String[] LABEL_TEXTS, String GUI_Text) {
 		
 		// Create the GUI fields
 		for (int i = 0; i < LABEL_TEXTS.length; i++) { 
@@ -110,8 +110,28 @@ public class GUI_Opetator {
 				options[0]
 			);
 		
-		return userSelection.trim();
-		
+		return userSelection.trim();	
+	}
+	
+	public static String getUserTextInput(String GUI_Text, String description) {
+		// Frame for the GUI
+		JFrame frame = new JFrame();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(false);
+		frame.setSize(420,420);
+				
+		// This is the menu, here the user will be able to choose which of the main actions of the program he wants to do
+		String userSelection = (String)JOptionPane.showInputDialog(
+				frame, 
+				GUI_Text,
+				description,
+				0, 
+				ApartmentManager._icon,
+				null,
+				null
+					);
+				
+				return userSelection.trim();
 	}
 	
 	/**

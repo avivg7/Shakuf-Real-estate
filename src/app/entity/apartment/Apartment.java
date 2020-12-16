@@ -68,10 +68,15 @@ public abstract class Apartment extends Entity {
 	 */
 	@Override
 	public String toString() {
-		return "Apartment [ ID: " + super.ID + ", Address: " + _address + ", Square Meter: " + _squareMeter
-				+ ", Number Of Rooms: " + _numberOfRooms + ", Client Name: " + _clientName + ", Price: " + _price + ", ";
+		return "Apartment ID: " + super.ID + "\nAddress: " + _address + ",\nSquare Meter: " + _squareMeter
+				+ ", \nNumber Of Rooms: " + _numberOfRooms + ",\nClient Name: " + _clientName + ",\nPrice: " + _price;
 	}
-
+	
+	/**
+	 * @return String - the class type (Apartment for sell / Apartment for rent
+	 */
+	public abstract String getType();
+	
 	public String get_address() {
 		return _address;
 	}
