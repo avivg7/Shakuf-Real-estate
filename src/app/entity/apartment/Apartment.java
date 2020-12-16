@@ -2,7 +2,9 @@ package app.entity.apartment;
 
 import app.entity.Entity;
 
-// Father class Apartment
+/**  
+ * Entity of type Apartment, abstract class
+ */
 public abstract class Apartment extends Entity {
 
 	private String _address;
@@ -11,7 +13,15 @@ public abstract class Apartment extends Entity {
 	private String _clientName;
 	private double _price;
 	
-	
+	/**
+	 * 
+	 * @param _address - Apartment address
+	 * @param _id - Entity id
+	 * @param _squareMeter - The Apartment square in meters
+	 * @param _numberOfRooms = The Apartment total room numbers
+	 * @param _clientName - Mame of the client
+	 * @param _price - The Price per month of the rent 
+	 */
 	public Apartment(String _address, long _id, double _squareMeter, int _numberOfRooms, String _clientName, double _price) {
 		super(_id);
 		this._address = _address;
@@ -21,36 +31,41 @@ public abstract class Apartment extends Entity {
 		this._price = _price;
 	}
 	
-	// Method that update the apartment's values
+	/**
+	 * Method that update the apartment's values
+	 */
 	public abstract void updateApartment();
 	
 	/**
+	 * @return boolean - return True if the user input is valid
 	 * 
-	 * 
-	 * @param double squareMeter -
-	 * @param int numberOfRooms -
-	 * @param double price -
-	 * @param String address -
-	 * @param String clientName -
-	 * 
-	 * @return boolean -
+	 * @param double squareMeter 
+	 * @param int numberOfRooms 
+	 * @param double price 
+	 * @param String address 
+	 * @param String clientName  
 	 */
 	public static boolean isValidFields( double squareMeter, int numberOfRooms, double price, String address, String clientName ) {
 		return (
-			squareMeter >= 1 ||
-    		numberOfRooms >= 1 ||
-    		price >= 1 ||
-    		address.length() >= 1 ||
+			squareMeter >= 1 &&
+    		numberOfRooms >= 1 &&
+    		price >= 1 &&
+    		address.length() >= 1 &&
     		clientName.length() >= 1
 		);
 	}
 
-	// Object cloning refers to creation of exact copy of an object
+	/**
+	 * @return - Object cloning refers to creation of exact copy of an object
+	 */
 	@Override
 	public Apartment clone() throws CloneNotSupportedException {
 	return (Apartment)super.clone();
 	}
 	
+	/**\
+	 * @return - All of the apartment details
+	 */
 	@Override
 	public String toString() {
 		return "Apartment [ ID: " + super.ID + ", Address: " + _address + ", Square Meter: " + _squareMeter
