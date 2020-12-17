@@ -139,6 +139,26 @@ public class SellApartment extends Apartment {
 		return "Apartment for sell";
 	}
 	
+	/**
+	 * @return String - all parameters as one String
+	 */
+	@Override
+	public String getAllParam() {
+		//if the place in the table is blank
+		String blankSpace = "------";
+		return 
+				this.getType() + ","+
+				this.getID() + "," +
+				this.get_address() + "," +
+				this.get_squareMeter() + "," +
+				this.get_numberOfRooms() + "," +
+				this.get_clientName() + "," +
+				this.get_price() + "," +
+				this.get_offeredPrice()+ "," +
+				this.get_entryDate() + "," +
+				blankSpace + "," +
+				blankSpace;		
+	}
 	
 
 }

@@ -16,10 +16,13 @@ public class MyDialog extends JDialog {
 	 */
 	public MyDialog( JFrame frame, JTable table) {
         super( frame, "Show All Apartments", true );
-
+        
+        // container is the part that connect the table with the dialog window
         Container c = getContentPane();
         c.setLayout( new FlowLayout() );
         c.add( table );
+        
+        // pack the dialog box around the table and locate it on the center of the screen
         this.pack();
         this.setLocationRelativeTo(c.getParent());
         this.show();

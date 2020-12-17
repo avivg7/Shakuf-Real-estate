@@ -1,6 +1,4 @@
 package app.gui;
-
-
 import java.awt.Dialog;
 import java.util.ArrayList;
 import javax.swing.*;
@@ -9,7 +7,9 @@ import javax.swing.table.TableColumn;
 import app.entity.apartment.Apartment;
 import app.entity.apartment.RentApartment;
 import app.entity.apartment.SellApartment;
-
+/**
+ * @TODO fix the matrix of the data
+ */
 /**
  * class that represent a table that contain all of the apartments data 
  */
@@ -17,7 +17,7 @@ public class GUI_Table {
 		/**
 		 * @param JFrame - GUI frame
 		 */
-	 	JFrame frame;
+	 	JFrame frame = new JFrame(); ;
 	 	
 	 	/**
 	 	 * @param JTable - Data table designed for use with GUI 
@@ -33,8 +33,8 @@ public class GUI_Table {
 	 	 */
 	    public GUI_Table(ArrayList<Apartment> _apartments){ 
 	    	
-	    	//set the columns of the table
-			String[] column = {
+	    	// Set the columns of the table
+			String[] columns = {
 					"Type",
 					"ID",
 					"Address",
@@ -48,48 +48,28 @@ public class GUI_Table {
 					"Rental End Date",
 				};
 			
-			// set the table's values
-			String[][] data = new String[_apartments.size()+1][11];
-			for (int i = 0; i < column.length; i++) {
-				data[0][i] = column[i];
-			}
+			// Set the table's values
+			String[][] data = new String[_apartments.size()+1][columns.length];
 			
+			// Set columns inside the table
+			data[0] = columns;
+			
+			// Set apartments data in the table
 			for (int i = 0, j = 1; i < _apartments.size(); i++,j++) {
-				
-				data[j][0] = _apartments.get(i).getType();
-				data[j][1] = String.valueOf(_apartments.get(i).getID());
-				data[j][2] = _apartments.get(i).get_address();
-				data[j][3] = String.valueOf(_apartments.get(i).get_squareMeter());
-				data[j][4] = String.valueOf(_apartments.get(i).get_numberOfRooms());
-				data[j][5] = _apartments.get(i).get_clientName();
-				data[j][6] = String.valueOf(_apartments.get(i).get_price());
-				if (_apartments.get(i) instanceof SellApartment) {
-					data[j][7] = String.valueOf(((SellApartment) _apartments.get(i)).get_offeredPrice());
-					data[j][8] = ((SellApartment) _apartments.get(i)).get_entryDate();	
-					data[j][9] = "------";
-					data[j][10] = "------";
-				} 
-				else
-				{
-					data[j][7] = "------";
-					data[j][8] = "------";
-					data[j][9] = ((RentApartment) _apartments.get(i)).get_rentlStartDate();
-					data[j][10] = ((RentApartment) _apartments.get(i)).get_rentalEndDate();
-				}
-			}
+				data[j] = _apartments.get(i).getAllParam().split(",");
+			}			
 		
-		// Set the frame value and run the GUI	
-	    frame=new JFrame();    
-	    table=new JTable(data,column); 
-	    table.setRowHeight(30);
+			// Set the table and adjust cells 	
+			table=new JTable(data,columns); 
+			table.setRowHeight(30);
+			setJTableColumnsWidth(table,1200,40,10,95,30,40,30,30,30,30,35,35);
+			
+			// Scroll pane is a scroll bar to contain the table and used inside the frame
+			JScrollPane sp=new JScrollPane(table);;
+			frame.add(sp);    
 	    
-	    // Adjust the table columns size
-	    setJTableColumnsWidth(table,1200,40,10,95,30,40,30,30,30,30,35,35);
-	    JScrollPane sp=new JScrollPane(table);;
-	    frame.add(sp);    
-	    
-	    // Create a new dialog GUI with the frame and the table we just created
-	    MyDialog md = new MyDialog(frame,table);
+			// Create a new dialog GUI with the frame and the table we just created
+	    	MyDialog md = new MyDialog(frame,table);
 	    }
 		
 	    /**

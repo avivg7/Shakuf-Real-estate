@@ -56,7 +56,7 @@ public abstract class Apartment extends Entity {
 	}
 
 	/**
-	 * @return - Object cloning refers to creation of exact copy of an object
+	 * @return Object - cloning refers to creation of exact copy of an object
 	 */
 	@Override
 	public Apartment clone() throws CloneNotSupportedException {
@@ -64,13 +64,18 @@ public abstract class Apartment extends Entity {
 	}
 	
 	/**\
-	 * @return - All of the apartment details
+	 * @return String - All of the apartment details
 	 */
 	@Override
 	public String toString() {
 		return "\nID: " + super.ID + "\nAddress: " + _address + "\nSquare Meter: " + _squareMeter
 				+ "\nNumber Of Rooms: " + _numberOfRooms + "\nClient Name: " + _clientName + "\nPrice: " + _price;
 	}
+	
+	/**
+	 * @return String - all parameters as one String
+	 */
+	public abstract String getAllParam();
 	
 	/**
 	 * @return String - the class type (Apartment for sell / Apartment for rent

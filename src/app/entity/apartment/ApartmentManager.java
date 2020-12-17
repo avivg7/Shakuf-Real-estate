@@ -299,10 +299,9 @@ public class ApartmentManager {
 	 */
 	public void showAllApartments() {
 		
-			
 		try {
 			GUI_Table gt = new GUI_Table(_apartments);
-			
+		
 		} 
 		catch (Exception e) {
 			GUI_Operator.showGUI_Massage("Somthing went wrong, please try again");
@@ -324,19 +323,19 @@ public class ApartmentManager {
 	 */
 	public void findApartment() {
 		
-		// If an apartment with the same ID is found for the input that the user entered, the value will become true		
+		// Ask the user for input, the user will give us ID		
 		String findID = GUI_Operator.getUserTextInput(
 				"Please enter the ID of the requested apartment", 
 				"Enter the ID of the requested apartment");
 		
-		// We will look for the ID from the input in the entire list of apartments, if we found 
-		// the apartment the user will be able to choose actions he can do on that apartment
+		// We will look for an apartment with the ID , if we will found it then the user will   
+		// be able to choose to perform actions on the apartments that match the search
 		if (isExist(Long.parseLong(findID))) {
 			this.actionsOnApartment(getApartmentByID(findID));
 		}
 		else 
 		{
-			// we the boolean value of found is still false after the last iteration them we will send that massage
+			// if the ID not found
 			GUI_Operator.showGUI_Massage("The Apartment is not in our database :(");			
 		}
 					 

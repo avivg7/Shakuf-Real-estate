@@ -138,6 +138,28 @@ public class RentApartment extends Apartment {
 	public String getType() {
 		return "Apartment for rent";
 	}
+
+	/**
+	 * @return String - all parameters as one String
+	 */
+	@Override
+	public String getAllParam() {
+		//if the place in the table is blank
+		String blankSpace = "------";
+		return 
+				this.getType() + ","+
+				this.getID() + "," +
+				this.get_address() + "," +
+				this.get_squareMeter() + "," +
+				this.get_numberOfRooms() + "," +
+				this.get_clientName() + "," +
+				this.get_price() + "," +
+				blankSpace + "," +
+				blankSpace + "," +
+				this.get_rentlStartDate()+ "," +
+				this.get_rentalEndDate();
+		
+	}
 	
 
 }
