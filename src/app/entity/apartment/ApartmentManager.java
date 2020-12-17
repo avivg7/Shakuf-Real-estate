@@ -39,7 +39,7 @@ public class ApartmentManager {
 			_counterID++;
 			this._apartments.add(new SellApartment("Yehuda Halevi 22, Tel-Aviv", _counterID, 76, 3, "Yossi Cohen", 2000000, 1500000, "12-2-2021"));
 			_counterID++;
-			this._apartments.add(new SellApartment("Bugrashov 13, Tel-Aviv", _counterID, 106, 4, "Moshe Levi", 3000000, 1900000, "22-4-2021"));
+			this._apartments.add(new SellApartment("Bugrashov 13, Tel-Aviv", _counterID, 106, 4, "Yossi Cohen", 3000000, 1900000, "22-4-2021"));
 			_counterID++;
 			this._apartments.add(new SellApartment("Hagadna 6, Rishon Letzion", _counterID, 70, 3, "Dudi Hertz", 1200000, 1000000, "21-1-2021"));
 			_counterID++;
@@ -59,6 +59,7 @@ public class ApartmentManager {
 				"Add new apartment",
 				"Find apartment",
 				"Choose an ID from a list",
+				"Associate client apartments",
 		        "Show all apartments", 
 		        "Sort apartments",
 		        "Exit"
@@ -85,6 +86,9 @@ public class ApartmentManager {
 						break;
 					case "Choose an ID from a list":
 						this.selectIdFromList();
+						break;
+					case "Associate client apartments":
+						this.associateClientApartments();
 						break;
 					case "Show all apartments":
 						this.showAllApartments();		
@@ -400,5 +404,34 @@ public class ApartmentManager {
 				break;
 		}
 	}
-
+	
+	/**
+	 * Method that get a name of a client from the user and show all of his apartments
+	 */
+	public void associateClientApartments() {
+			
+		try {
+			// Take input from the user
+			String findName = GUI_Operator.getUserTextInput(
+					"Please enter the ID of the requested apartment", 
+					"Enter the ID of the requested apartment");
+			
+			ArrayList<Apartment> nameApartments = new ArrayList<>();
+			for (Apartment apartment : _apartments) {
+				if (findName.toLowerCase().equals(apartment.get_clientName().toLowerCase())) {
+					nameApartments.add(apartment);
+				}
+			}
+			
+			// show the user all of the client apartment
+			GUI_Table gt = new GUI_Table(nameApartments);
+			
+		} 
+		catch (Exception e) {
+			GUI_Operator.showGUI_Massage("Somthing went wrong, please try again");
+		}
+		
+		
+		
+	}
 }

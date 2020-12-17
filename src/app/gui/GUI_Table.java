@@ -14,13 +14,22 @@ import app.entity.apartment.SellApartment;
  * class that represent a table that contain all of the apartments data 
  */
 public class GUI_Table {
-	 	JFrame frame; 
+		/**
+		 * @param JFrame - GUI frame
+		 */
+	 	JFrame frame;
+	 	
+	 	/**
+	 	 * @param JTable - Data table designed for use with GUI 
+	 	 */
 	 	JTable table;
+	 	/**
+	 	 * @param Dialog - Top level window that can contain a JTable
+	 	 */
 	 	Dialog dialog;
 	 	
 	 	/**
-	 	 * 
-	 	 * @param ArrayList<Apartment> _apartments 
+	 	 * @param ArrayList<Apartment> - list of apartment from the manager class 
 	 	 */
 	    public GUI_Table(ArrayList<Apartment> _apartments){ 
 	    	
@@ -75,7 +84,7 @@ public class GUI_Table {
 	    table.setRowHeight(30);
 	    
 	    // Adjust the table columns size
-	    setJTableColumnsWidth(table,1200,40,10,95,30,40,30,30,30,30,35,30);
+	    setJTableColumnsWidth(table,1200,40,10,95,30,40,30,30,30,30,35,35);
 	    JScrollPane sp=new JScrollPane(table);;
 	    frame.add(sp);    
 	    
