@@ -35,8 +35,8 @@ public class RentApartment extends Apartment {
 	 */
 	@Override
 	public String toString() {
-		return "Rent " + super.toString() + ",\nRental Start Date:" + _rentalStartDate
-				+ ",\nRental End Date:" + _rentalEndDate + "\n";
+		return this.getType() + super.toString() + "\nRental Start Date: " + _rentalStartDate
+				+ "\nRental End Date: " + _rentalEndDate + "\n";
 	}
 	
 	/**

@@ -68,8 +68,8 @@ public abstract class Apartment extends Entity {
 	 */
 	@Override
 	public String toString() {
-		return "Apartment ID: " + super.ID + "\nAddress: " + _address + ",\nSquare Meter: " + _squareMeter
-				+ ", \nNumber Of Rooms: " + _numberOfRooms + ",\nClient Name: " + _clientName + ",\nPrice: " + _price;
+		return "\nID: " + super.ID + "\nAddress: " + _address + "\nSquare Meter: " + _squareMeter
+				+ "\nNumber Of Rooms: " + _numberOfRooms + "\nClient Name: " + _clientName + "\nPrice: " + _price;
 	}
 	
 	/**

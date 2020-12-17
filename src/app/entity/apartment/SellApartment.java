@@ -32,8 +32,8 @@ public class SellApartment extends Apartment {
 	 */
 	@Override
 	public String toString() {
-		return "Sell " + super.toString() +",\nOffered Price=" + _offeredPrice
-				+ ",\nEntry Date=" + _entryDate + "\n";
+		return this.getType() + super.toString() +"\nOffered Price: " + _offeredPrice
+				+ "\nEntry Date: " + _entryDate + "\n";
 	}
 	
 	/**
