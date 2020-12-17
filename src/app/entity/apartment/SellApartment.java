@@ -1,5 +1,5 @@
 package app.entity.apartment;
-import app.GUI_Operator;
+import app.gui.GUI_Operator;
 
 /**
  * This class represent the sale type of Apartment

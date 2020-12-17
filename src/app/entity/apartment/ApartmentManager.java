@@ -1,14 +1,12 @@
 package app.entity.apartment;
 
 import javax.swing.*;
-import app.GUI_Operator;
-import app.GUI_Table;
 
-import java.awt.Dimension;
-import java.awt.LayoutManager;
+import app.gui.GUI_Operator;
+import app.gui.GUI_Table;
+
 import java.util.ArrayList;
 import java.util.Collections;
-
 
 
 /**
@@ -45,7 +43,7 @@ public class ApartmentManager {
 			_counterID++;
 			this._apartments.add(new SellApartment("Hagadna 6, Rishon Letzion", _counterID, 70, 3, "Dudi Hertz", 1200000, 1000000, "21-1-2021"));
 			_counterID++;
-			this._apartments.add(new RentApartment("rotshild 17, Tel-Aviv", _counterID, 50, 2, "Miri Shavtay", 4000, "20-2-2020", "20-2-2021"));
+			this._apartments.add(new RentApartment("Rotshild 17, Tel-Aviv", _counterID, 50, 2, "Miri Shavtay", 4000, "20-2-2020", "20-2-2021"));
 			_counterID++;
 			this._apartments.add(new RentApartment("Hayarkon 6, Tel-Aviv", _counterID, 90, 3, "Eli Kopter", 8000, "15-1-2020", "15-1-2021"));
 		
@@ -111,7 +109,6 @@ public class ApartmentManager {
 			GUI_Operator.showGUI_Massage("Thank you and goodbye");
 		}
 	}
-	
 	 
 	/**
 	 * Add new apartment to the list
@@ -293,72 +290,14 @@ public class ApartmentManager {
 		}
 	}
 	
-	// shows all the details of the apartments in the list
+	/**
+	 * Shows all the details of the apartments in the list
+	 */
 	public void showAllApartments() {
 		
 			
 		try {
 			GUI_Table gt = new GUI_Table(_apartments);
-			
-			
-			
-			/*
-			JFrame f=new JFrame();
-			
-			String[] column = {
-					"Type",
-					"ID",
-					"Address",
-					"Square Meter",
-					"Number Of Rooms",
-					"Clint Name",
-					"Price",
-					"Entry Date",
-					"Rental Start Date",
-					"Rental End Date",
-				};
-					
-			String[][] data = new String[_apartments.size()][11]; 
-			for (int i = 0; i < _apartments.size(); i++) {
-				System.out.println("try");
-
-				data[i][0] = _apartments.get(i).getType();
-				data[i][1] = String.valueOf(_apartments.get(i).getID());
-				data[i][2] = _apartments.get(i).get_address();
-				data[i][3] = String.valueOf(_apartments.get(i).get_squareMeter());
-				data[i][4] = String.valueOf(_apartments.get(i).get_numberOfRooms());
-				data[i][5] = _apartments.get(i).get_clientName();
-				data[i][6] = String.valueOf(_apartments.get(i).get_price());
-				if (_apartments.get(i) instanceof SellApartment) {
-					data[i][7] = String.valueOf(((SellApartment) _apartments.get(i)).get_offeredPrice());
-					data[i][8] = ((SellApartment) _apartments.get(i)).get_entryDate();	
-					data[i][9] = "";
-					data[i][10] = "";
-				} 
-				else
-				{
-					data[i][7] = "";
-					data[i][8] = "";
-					data[i][9] = ((RentApartment) _apartments.get(i)).get_rentlStartDate();
-					data[i][10] = ((RentApartment) _apartments.get(i)).get_rentalEndDate();
-				}
-			}
-	    f=new JFrame();    
-	       
-	    JTable jt=new JTable(data,column);    
-	    jt.setBounds(30,40,200,300);          
-	    JScrollPane sp=new JScrollPane(jt);
-	    f.add(sp);    
-	    //f.setAlwaysOnTop(true);
-	    f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    f.setSize(800,800);    
-	    f.setVisible(true);
-	    
-	    */
-	    
-		/*	
-			
-		*/
 			
 		} 
 		catch (Exception e) {

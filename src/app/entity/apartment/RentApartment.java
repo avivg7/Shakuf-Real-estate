@@ -1,6 +1,6 @@
 package app.entity.apartment;
 
-import app.GUI_Operator;
+import app.gui.GUI_Operator;
 
 /**
  * 
