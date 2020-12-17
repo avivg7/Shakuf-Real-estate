@@ -30,6 +30,22 @@ public class RentApartment extends Apartment {
 		this._rentalEndDate = _rentalEndDate;
 	}
 
+	public String get_rentlStartDate() {
+		return _rentalStartDate;
+	}
+
+	public void set_rentlStartDate(String _rentlStartDate) {
+		this._rentalStartDate = _rentlStartDate;
+	}
+
+	public String get_rentalEndDate() {
+		return _rentalEndDate;
+	}
+
+	public void set_rentalEndDate(String _rentalEndDate) {
+		this._rentalEndDate = _rentalEndDate;
+	}
+	
 	/**\
 	 * @return - All of the apartment details
 	 */
@@ -116,21 +132,6 @@ public class RentApartment extends Apartment {
 		
 	}
 
-	public String get_rentlStartDate() {
-		return _rentalStartDate;
-	}
-
-	public void set_rentlStartDate(String _rentlStartDate) {
-		this._rentalStartDate = _rentlStartDate;
-	}
-
-	public String get_rentalEndDate() {
-		return _rentalEndDate;
-	}
-
-	public void set_rentalEndDate(String _rentalEndDate) {
-		this._rentalEndDate = _rentalEndDate;
-	}
 	/**
 	 * @return String - The type of the apartment (Apartment for rent)
 	 */

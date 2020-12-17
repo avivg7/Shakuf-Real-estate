@@ -27,6 +27,23 @@ public class SellApartment extends Apartment {
 		this._entryDate = _entryDate;
 	}
 	
+	public double get_offeredPrice() {
+		return _offeredPrice;
+	}
+
+	public void set_offeredPrice(double _offeredPrice) {
+		this._offeredPrice = _offeredPrice;
+	}
+
+	public String get_entryDate() {
+		return _entryDate;
+	}
+
+	
+	public void set_entryDate(String _entryDate) {
+		this._entryDate = _entryDate;
+	}
+	
 	/**\
 	 * @return - All of the apartment details
 	 */
@@ -113,23 +130,6 @@ public class SellApartment extends Apartment {
 		
 	}
 
-	
-	public double get_offeredPrice() {
-		return _offeredPrice;
-	}
-
-	public void set_offeredPrice(double _offeredPrice) {
-		this._offeredPrice = _offeredPrice;
-	}
-
-	public String get_entryDate() {
-		return _entryDate;
-	}
-
-	
-	public void set_entryDate(String _entryDate) {
-		this._entryDate = _entryDate;
-	}
 
 	/**
 	 * @return String - The type of the Apartment (Apartment for sell)

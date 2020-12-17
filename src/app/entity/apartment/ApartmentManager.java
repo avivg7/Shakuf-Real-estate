@@ -281,12 +281,16 @@ public class ApartmentManager {
 	 */
 	public void selectIdFromList() {
 		try {
-			String[] IDOptions = new String[_apartments.size()];
+			// Collect all the ID's from the apartments list
+			String[] ID_Options = new String[_apartments.size()];
 			for (int i = 0; i < _apartments.size(); i++) {
-				IDOptions[i] = String.valueOf(_apartments.get(i).getID());
+				ID_Options[i] = String.valueOf(_apartments.get(i).getID());
 			}
 			
-			String userSelection = GUI_Operator.getUserSelection(IDOptions, "Select the wanted ID", "Select the wanted ID 2");
+			// Use GUI to show the list of ID's to the user and he return the chosen ID
+			String userSelection = GUI_Operator.getUserSelection(ID_Options, "Select the wanted ID", "Select the wanted ID 2");
+			
+			// Give the user the option to perform actions on the selected apartment 
 			this.actionsOnApartment(getApartmentByID(userSelection));
 			
 		} catch (Exception e) {
@@ -300,6 +304,7 @@ public class ApartmentManager {
 	public void showAllApartments() {
 		
 		try {
+			// create and show table wit all the apartments details
 			GUI_Table gt = new GUI_Table(_apartments);
 		
 		} 
@@ -410,11 +415,12 @@ public class ApartmentManager {
 	public void associateClientApartments() {
 			
 		try {
-			// Take input from the user
+			// Take input from the user (Client Name)
 			String findName = GUI_Operator.getUserTextInput(
 					"Please enter the ID of the requested apartment", 
 					"Enter the ID of the requested apartment");
 			
+			// Collect all the apartment connected to the client name from the input
 			ArrayList<Apartment> nameApartments = new ArrayList<>();
 			for (Apartment apartment : _apartments) {
 				if (findName.toLowerCase().equals(apartment.get_clientName().toLowerCase())) {

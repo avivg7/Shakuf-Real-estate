@@ -30,6 +30,46 @@ public abstract class Apartment extends Entity {
 		this._clientName = _clientName;
 		this._price = _price;
 	}
+		
+	public String get_address() {
+		return _address;
+	}
+	
+	public void set_address(String _address) {
+		this._address = _address;
+	}
+	
+	public double get_squareMeter() {
+		return _squareMeter;
+	}
+	
+	public void set_squareMeter(double _squareMeter) {
+		this._squareMeter = _squareMeter;
+	}
+	
+	public int get_numberOfRooms() {
+		return _numberOfRooms;
+	}
+	
+	public void set_numberOfRooms(int _numberOfRooms) {
+		this._numberOfRooms = _numberOfRooms;
+	}
+	
+	public String get_clientName() {
+		return _clientName;
+	}
+	
+	public void set_clientName(String _clientName) {
+		this._clientName = _clientName;
+	}
+	
+	public double get_price() {
+		return _price;
+	}
+	
+	public void set_price(double _price) {
+		this._price = _price;
+	}
 	
 	/**
 	 * Method that update the apartment's values
@@ -81,46 +121,5 @@ public abstract class Apartment extends Entity {
 	 * @return String - the class type (Apartment for sell / Apartment for rent
 	 */
 	public abstract String getType();
-	
-	public String get_address() {
-		return _address;
-	}
-
-	public void set_address(String _address) {
-		this._address = _address;
-	}
-
-	public double get_squareMeter() {
-		return _squareMeter;
-	}
-
-	public void set_squareMeter(double _squareMeter) {
-		this._squareMeter = _squareMeter;
-	}
-
-	public int get_numberOfRooms() {
-		return _numberOfRooms;
-	}
-
-	public void set_numberOfRooms(int _numberOfRooms) {
-		this._numberOfRooms = _numberOfRooms;
-	}
-
-	public String get_clientName() {
-		return _clientName;
-	}
-
-	public void set_clientName(String _clientName) {
-		this._clientName = _clientName;
-	}
-
-	public double get_price() {
-		return _price;
-	}
-
-	public void set_price(double _price) {
-		this._price = _price;
-	}
-	
 
 }

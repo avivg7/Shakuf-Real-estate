@@ -15,16 +15,16 @@ public class GUI_Table {
 		/**
 		 * @param JFrame - GUI frame
 		 */
-	 	JFrame frame = new JFrame(); ;
+	 	private JFrame frame = new JFrame(); ;
 	 	
 	 	/**
 	 	 * @param JTable - Data table designed for use with GUI 
 	 	 */
-	 	JTable table;
+	 	private JTable table;
 	 	/**
 	 	 * @param Dialog - Top level window that can contain a JTable
 	 	 */
-	 	Dialog dialog;
+	 	private Dialog dialog;
 	 	
 	 	/**
 	 	 * @param ArrayList<Apartment> - list of apartment from the manager class 
