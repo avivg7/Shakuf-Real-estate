@@ -7,9 +7,7 @@ import javax.swing.table.TableColumn;
 import app.entity.apartment.Apartment;
 import app.entity.apartment.RentApartment;
 import app.entity.apartment.SellApartment;
-/**
- * @TODO fix the matrix of the data
- */
+
 /**
  * class that represent a table that contain all of the apartments data 
  */
