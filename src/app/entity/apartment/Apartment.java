@@ -103,15 +103,6 @@ public abstract class Apartment extends Entity {
 	return (Apartment)super.clone();
 	}
 	
-	/**\
-	 * @return String - All of the apartment details
-	 */
-	@Override
-	public String toString() {
-		return "\nID: " + super.ID + "\nAddress: " + _address + "\nSquare Meter: " + _squareMeter
-				+ "\nNumber Of Rooms: " + _numberOfRooms + "\nClient Name: " + _clientName + "\nPrice: " + _price;
-	}
-	
 	/**
 	 * @return String - all parameters as one String
 	 */

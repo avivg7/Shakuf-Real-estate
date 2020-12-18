@@ -1,11 +1,13 @@
 package app.entity.apartment;
-
 import javax.swing.*;
 
+import app.entity.apartment.sort.IdComparator;
+import app.entity.apartment.sort.NameComparator;
+import app.entity.apartment.sort.PriceComparator;
 import app.gui.GUI_Operator;
 import app.gui.GUI_Table;
-
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 
@@ -58,8 +60,6 @@ public class ApartmentManager {
 		String[] options = {
 				"Add new apartment",
 				"Find apartment",
-				"Choose an ID from a list",
-				"Associate client apartments",
 		        "Show all apartments", 
 		        "Sort apartments",
 		        "Exit"
@@ -84,18 +84,12 @@ public class ApartmentManager {
 					case "Find apartment":
 						this.findApartment();
 						break;
-					case "Choose an ID from a list":
-						this.selectIdFromList();
-						break;
-					case "Associate client apartments":
-						this.associateClientApartments();
-						break;
 					case "Show all apartments":
 						this.showAllApartments();		
 						break;
 						
 					case "Sort apartments":
-						this.sortByPrice();		
+						this.sortOptions();		
 						break;
 						
 					case "Exit":
@@ -276,6 +270,191 @@ public class ApartmentManager {
 		return false;		
 	}
 	
+	
+	/**
+	 * Shows all the details of the apartments in the list
+	 */
+	public void showAllApartments() {
+		
+		try {
+			// create and show table wit all the apartments details
+			GUI_Table gt = new GUI_Table(_apartments);
+		
+		} 
+		catch (Exception e) {
+			GUI_Operator.showGUI_Massage("Somthing went wrong, please try again");
+		}
+	}
+	
+	/**
+	 * Method that takes the user's preference according to which sorting he is interested 
+	 * in doing and sends it to the relevant sorting method
+	 */
+	public void sortOptions() {
+		// String array for the labels
+				String[] options = {
+						"Sort by Price",
+						"Sort by Client Names",
+						"Sort by ID's"
+			        };
+				
+				try {
+					//takes the user's preference according to which sorting he is interested in doing
+					String userSelection = GUI_Operator.getUserSelection(
+							options, 
+							"Please select how do you like to sort the aprtment list", 
+							"Sort"
+						);
+					
+					// Switch case that represents user's choice of sorting the list 
+					switch ( userSelection ) {
+					
+						case "Sort by Price":
+							this.sortByPrice();
+							break;
+						
+						case "Sort by Client Names":
+							this.sortByName();
+							break;
+							
+						case "Sort by ID's":
+							this.sortByID();
+							break;
+					
+						default:
+							break;
+					}
+					
+				} 
+				catch (Exception e) {
+					GUI_Operator.showGUI_Massage("Somthing went wrong, please try again");
+				}
+	}
+		
+	
+	/**
+	 * Sort all the apartments value in the list by price, the method uses Comparator
+	 */
+	public void sortByPrice() {
+		Collections.sort(_apartments, new PriceComparator());
+		GUI_Operator.showGUI_Massage("The apartments were successfully sorted by Price");
+	}
+	
+	/**
+	 * Sort all the apartments list by the client name in lexicographic order , the method uses Comparator
+	 */
+	public void sortByName() {
+		Collections.sort(_apartments, new NameComparator());
+		GUI_Operator.showGUI_Massage("The apartments were successfully sorted by Client Name");
+	}
+	
+	/**
+	 * Sort all the apartments value in the list by ID's, the method uses Comparator
+	 */
+	public void sortByID() {
+		Collections.sort(_apartments, new IdComparator());
+		GUI_Operator.showGUI_Massage("The apartments were successfully sorted by ID's");
+	}
+	
+	/**
+	 * Method that takes the user's preference according to which way he is interested 
+	 * to find the apartment
+	 */
+	public void findApartment() {
+		
+		// String array for the labels
+		String[] options = {
+				"Find by ID",
+				"Find by Client Name",
+				"Find from a list of IDs"
+	        };
+		
+		try {
+			//takes the user's preference according to which search he is interested in doing
+			String userSelection = GUI_Operator.getUserSelection(
+					options, 
+					"Please select how do you like to find the aprtment", 
+					"Find"
+				);
+			
+			// Switch case that represents user's choice of search the list 
+			switch ( userSelection ) {
+			
+				case "Find by ID":
+					this.findByID();
+					break;
+				
+				case "Find by Client Name":
+					this.associateClientApartments();
+					break;
+					
+				case "Find from a list of IDs":
+					this.selectIdFromList();
+					break;
+			
+				default:
+					break;
+			}
+			
+		} 
+		catch (Exception e) {
+			GUI_Operator.showGUI_Massage("Somthing went wrong, please try again");
+		}		
+					 
+	}
+	
+	/**
+	 * Find specific apartment by ID
+	 */
+	public void findByID() {
+		// Ask the user for input, the user will give us ID		
+				String findID = GUI_Operator.getUserTextInput(
+						"Please enter the ID of the requested apartment", 
+						"Enter the ID of the requested apartment");
+				
+				// We will look for an apartment with the ID , if we will found it then the user will   
+				// be able to choose to perform actions on the apartments that match the search
+				if (isExist(Long.parseLong(findID))) {
+					this.actionsOnApartment(getApartmentByID(findID));
+				}
+				else 
+				{
+					// if the ID not found
+					GUI_Operator.showGUI_Massage("The Apartment is not in our database :(");			
+				}
+	}
+	
+	/**
+	 * Method that get a name of a client from the user and show all of his apartments
+	 */
+	public void associateClientApartments() {
+			
+		try {
+			// Take input from the user (Client Name)
+			String findName = GUI_Operator.getUserTextInput(
+					"Please enter the ID of the requested apartment", 
+					"Enter the ID of the requested apartment");
+			
+			// Collect all the apartment connected to the client name from the input
+			ArrayList<Apartment> nameApartments = new ArrayList<>();
+			for (Apartment apartment : _apartments) {
+				if (findName.toLowerCase().equals(apartment.get_clientName().toLowerCase())) {
+					nameApartments.add(apartment);
+				}
+			}
+			
+			// show the user all of the client apartment
+			GUI_Table gt = new GUI_Table(nameApartments);
+			
+		} 
+		catch (Exception e) {
+			GUI_Operator.showGUI_Massage("Somthing went wrong, please try again");
+		}
+		
+		
+		
+	}
+	
 	/**
 	 * Preset the user a list of ID's that he can selects and perform actions
 	 */
@@ -296,54 +475,6 @@ public class ApartmentManager {
 		} catch (Exception e) {
 			GUI_Operator.showGUI_Massage("Somthing went wrong, please try again");
 		}
-	}
-	
-	/**
-	 * Shows all the details of the apartments in the list
-	 */
-	public void showAllApartments() {
-		
-		try {
-			// create and show table wit all the apartments details
-			GUI_Table gt = new GUI_Table(_apartments);
-		
-		} 
-		catch (Exception e) {
-			GUI_Operator.showGUI_Massage("Somthing went wrong, please try again");
-		}
-	}
-	
-	
-	/**
-	 * Sort all the apartments value in the list by price, the method uses Comparator
-	 */
-	public void sortByPrice() {
-		Collections.sort(_apartments, new PriceComparator());
-		GUI_Operator.showGUI_Massage("The apartments were successfully sorted");
-	}
-	
-	
-	/**
-	 * Find specific apartment by ID
-	 */
-	public void findApartment() {
-		
-		// Ask the user for input, the user will give us ID		
-		String findID = GUI_Operator.getUserTextInput(
-				"Please enter the ID of the requested apartment", 
-				"Enter the ID of the requested apartment");
-		
-		// We will look for an apartment with the ID , if we will found it then the user will   
-		// be able to choose to perform actions on the apartments that match the search
-		if (isExist(Long.parseLong(findID))) {
-			this.actionsOnApartment(getApartmentByID(findID));
-		}
-		else 
-		{
-			// if the ID not found
-			GUI_Operator.showGUI_Massage("The Apartment is not in our database :(");			
-		}
-					 
 	}
 
 	/**
@@ -401,7 +532,9 @@ public class ApartmentManager {
 				break;
 				
 			case "Show Details":
-				GUI_Operator.showGUI_Massage(apartment.toString());
+				 
+				// create a table with the chosen apartment and show it to the user
+				GUI_Table gt = new GUI_Table( new ArrayList<>( Arrays.asList(apartment) ) );
 				break;
 
 			default:
@@ -409,34 +542,5 @@ public class ApartmentManager {
 		}
 	}
 	
-	/**
-	 * Method that get a name of a client from the user and show all of his apartments
-	 */
-	public void associateClientApartments() {
-			
-		try {
-			// Take input from the user (Client Name)
-			String findName = GUI_Operator.getUserTextInput(
-					"Please enter the ID of the requested apartment", 
-					"Enter the ID of the requested apartment");
-			
-			// Collect all the apartment connected to the client name from the input
-			ArrayList<Apartment> nameApartments = new ArrayList<>();
-			for (Apartment apartment : _apartments) {
-				if (findName.toLowerCase().equals(apartment.get_clientName().toLowerCase())) {
-					nameApartments.add(apartment);
-				}
-			}
-			
-			// show the user all of the client apartment
-			GUI_Table gt = new GUI_Table(nameApartments);
-			
-		} 
-		catch (Exception e) {
-			GUI_Operator.showGUI_Massage("Somthing went wrong, please try again");
-		}
-		
-		
-		
-	}
+	
 }

@@ -46,14 +46,6 @@ public class RentApartment extends Apartment {
 		this._rentalEndDate = _rentalEndDate;
 	}
 	
-	/**\
-	 * @return - All of the apartment details
-	 */
-	@Override
-	public String toString() {
-		return this.getType() + super.toString() + "\nRental Start Date: " + _rentalStartDate
-				+ "\nRental End Date: " + _rentalEndDate + "\n";
-	}
 	
 	/**
 	 * @return - Object cloning refers to creation of exact copy of an object

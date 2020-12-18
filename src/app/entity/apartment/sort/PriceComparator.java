@@ -1,6 +1,8 @@
-package app.entity.apartment;
+package app.entity.apartment.sort;
 
 import java.util.Comparator;
+
+import app.entity.apartment.Apartment;
 // Comparator for sorting apartments according to price
 public class PriceComparator implements Comparator<Apartment>{
 

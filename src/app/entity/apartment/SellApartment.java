@@ -44,15 +44,6 @@ public class SellApartment extends Apartment {
 		this._entryDate = _entryDate;
 	}
 	
-	/**\
-	 * @return - All of the apartment details
-	 */
-	@Override
-	public String toString() {
-		return this.getType() + super.toString() +"\nOffered Price: " + _offeredPrice
-				+ "\nEntry Date: " + _entryDate + "\n";
-	}
-	
 	/**
 	 * @return - Object cloning refers to creation of exact copy of an object
 	 */
