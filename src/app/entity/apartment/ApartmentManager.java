@@ -11,7 +11,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 
-
 /**
  * This class represent the system that manage the apartments
  */
@@ -158,10 +157,10 @@ public class ApartmentManager {
 					
 				    // Take input from the GUI
 				    address = GUI.extractor("Address");
-				    squareMeter = Double.parseDouble(GUI.extractor("Square Meter"));
+				    squareMeter = roundedDouble(Double.parseDouble(GUI.extractor("Square Meter")));
 				    numberOfRooms = Integer.parseInt(GUI.extractor("Number Of Rooms"));
 				    clientName = GUI.extractor("Client Name");
-				    price = Double.parseDouble(GUI.extractor("Price"));
+				    price = roundedDouble(Double.parseDouble(GUI.extractor("Price")));
 				    rentalStartDate = GUI.extractor("Start Date (dd-mm-yyyy)");
 				    rentalEndDate = GUI.extractor("End Date (dd-mm-yyyy)");
 				    				    
@@ -214,11 +213,11 @@ public class ApartmentManager {
 					    
 				    // Take input from the text fields
 					address = GUI.extractor("Address");
-				    squareMeter = Double.parseDouble(GUI.extractor("Square Meter"));
+				    squareMeter = roundedDouble(Double.parseDouble(GUI.extractor("Square Meter")));
 				    numberOfRooms = Integer.parseInt(GUI.extractor("Number Of Rooms"));
 				    clientName = GUI.extractor("Client Name");
-				    price = Double.parseDouble(GUI.extractor("Price"));
-				    offeredPrice = Double.parseDouble(GUI.extractor("Offered Price"));
+				    price = roundedDouble(Double.parseDouble(GUI.extractor("Price")));
+				    offeredPrice = roundedDouble(Double.parseDouble(GUI.extractor("Offered Price")));
 				    entryDate = GUI.extractor("Entry Date dd-mm-yyyy");
 	
 				    
@@ -529,5 +528,13 @@ public class ApartmentManager {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param unroundedDouble
+	 * @return the input after rounded to 2 down (xxxx.xx) 
+	 */
+	public static double roundedDouble(double unroundedDouble) {
+		return (Math.round(unroundedDouble * 100.0) / 100.0);
+	}
 	
 }

@@ -119,10 +119,10 @@ public class RentApartment extends Apartment {
 			
 		    // Take input from the text fields
 		     String address = GUI.extractor("Address");
-			 double squareMeter = Double.parseDouble(GUI.extractor("Square Meter"));
+			 double squareMeter = ApartmentManager.roundedDouble(Double.parseDouble(GUI.extractor("Square Meter")));
 			 int numberOfRooms = Integer.parseInt(GUI.extractor("Number Of Rooms"));
 			 String clientName = GUI.extractor("Client Name");
-			 double price = Double.parseDouble(GUI.extractor("Price")); 
+			 double price = ApartmentManager.roundedDouble(Double.parseDouble(GUI.extractor("Price"))); 
 			 String rentalStartDate = GUI.extractor("Start Date (dd-mm-yyyy)");
 			 String rentalEndDate = GUI.extractor("End Date (dd-mm-yyyy)");
 			 

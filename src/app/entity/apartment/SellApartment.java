@@ -127,11 +127,11 @@ public class SellApartment extends Apartment {
 			
 		    // Take input from the text fields 
 		     String address = GUI.extractor("Address");
-			 double squareMeter = Double.parseDouble(GUI.extractor("Square Meter"));
+			 double squareMeter = ApartmentManager.roundedDouble(Double.parseDouble(GUI.extractor("Square Meter")));
 			 int numberOfRooms = Integer.parseInt(GUI.extractor("Number Of Rooms"));
 			 String clientName = GUI.extractor("Client Name");
-			 double price = Double.parseDouble(GUI.extractor("Price")); 
-			 double offeredPrice = Double.parseDouble(GUI.extractor("Offered Price")); 
+			 double price = ApartmentManager.roundedDouble(Double.parseDouble(GUI.extractor("Price"))); 
+			 double offeredPrice = ApartmentManager.roundedDouble(Double.parseDouble(GUI.extractor("Offered Price"))); 
 			 String entryDate = GUI.extractor("Entry Date (dd-mm-yyyy)");
 		    
 			 // Check for invalid input
