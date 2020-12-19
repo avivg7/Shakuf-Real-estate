@@ -9,6 +9,7 @@ import app.gui.GUI_Table;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 
 
 /**
@@ -310,15 +311,15 @@ public class ApartmentManager {
 					switch ( userSelection ) {
 					
 						case "Sort by Price":
-							this.sortByPrice();
+							this.sorter(new PriceComparator());
 							break;
 						
 						case "Sort by Client Names":
-							this.sortByName();
+							this.sorter(new NameComparator());
 							break;
 							
 						case "Sort by ID's":
-							this.sortByID();
+							this.sorter(new IdComparator());
 							break;
 					
 						default:
@@ -331,29 +332,13 @@ public class ApartmentManager {
 				}
 	}
 		
-	
 	/**
-	 * Sort all the apartments value in the list by price, the method uses Comparator
+	 * Sort all the apartments value in the list, the method uses Comparator
+	 * @param comparator - the method we will sort the apartment by
 	 */
-	public void sortByPrice() {
-		Collections.sort(_apartments, new PriceComparator());
-		GUI_Operator.showGUI_Massage("The apartments were successfully sorted by Price");
-	}
-	
-	/**
-	 * Sort all the apartments list by the client name in lexicographic order , the method uses Comparator
-	 */
-	public void sortByName() {
-		Collections.sort(_apartments, new NameComparator());
-		GUI_Operator.showGUI_Massage("The apartments were successfully sorted by Client Name");
-	}
-	
-	/**
-	 * Sort all the apartments value in the list by ID's, the method uses Comparator
-	 */
-	public void sortByID() {
-		Collections.sort(_apartments, new IdComparator());
-		GUI_Operator.showGUI_Massage("The apartments were successfully sorted by ID's");
+	public void sorter(Comparator<Apartment> comparator) {
+		Collections.sort(_apartments, comparator);
+		GUI_Operator.showGUI_Massage("The apartments were successfully sorted");
 	}
 	
 	/**
