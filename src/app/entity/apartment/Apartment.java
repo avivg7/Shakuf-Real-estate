@@ -88,11 +88,74 @@ public abstract class Apartment extends Entity {
 	public static boolean isValidFields( double squareMeter, int numberOfRooms, double price, String address, String clientName ) {
 		return (
 			squareMeter >= 1 &&
+			squareMeter < Double.MAX_VALUE &&
     		numberOfRooms >= 1 &&
+    		numberOfRooms < Integer.MAX_VALUE &&
     		price >= 1 &&
+    		price < Double.MAX_VALUE &&
     		address.length() >= 1 &&
-    		clientName.length() >= 1
+    		address.length() < 50 &&
+    		clientName.length() >= 1 &&
+    		clientName.length() < 50
 		);
+	}
+	
+	/**
+	 * * @return String - If and when the user insert invalid input this method will show hem what kind of invalid
+	 * input he inserted
+	 * 
+	 * @param squareMeter
+	 * @param numberOfRooms
+	 * @param price
+	 * @param address
+	 * @param clientName
+	 * @return
+	 */
+	public static String validationError(double squareMeter, int numberOfRooms, double price, String address, String clientName) {
+		
+		StringBuilder errors = new StringBuilder("The action failed, you enterd invalid input :\n");
+		
+		if (address.length() < 1) {
+			errors.append("* Please fill the Address parameter\n" );
+		}
+		
+		if (address.length() >= 50) {
+			errors.append("* The Address you enterd is too long! Address should be less than 50 characters long\n" );
+		}
+		
+		if (squareMeter < 1) {
+			errors.append("* Square Meter parameter cannot be a negativ number !\n" );
+		}
+		
+		if (squareMeter >= Double.MAX_VALUE) {
+			errors.append("* Square Meter parameter cannot be more then " + Double.MAX_VALUE +  "!\n" );
+		}
+		
+		if (numberOfRooms < 1) {
+			errors.append("* Number Of Rooms parameter cannot be a negativ number !\n" );
+		}
+		
+		if (numberOfRooms >= Integer.MAX_VALUE) {
+			errors.append("* Number Of Rooms parameter cannot be more then " + Integer.MAX_VALUE +  "!\n"  );
+		}
+		
+		if (clientName.length() < 1) {
+			errors.append("* Please fill the Client Name parameter\n" );
+		}
+		
+		if (clientName.length() >= 50) {
+			errors.append("* The Client Name you enterd is too long! Address should be less than 50 characters long\n" );
+		}
+		
+		if (price < 1) {
+			errors.append("* Price parameter cannot be a negativ number !\n" );
+		}
+		
+		if (price >= Double.MAX_VALUE) {
+			errors.append("* Price parameter cannot be more then " + Double.MAX_VALUE +  "!\n" );
+		}
+		
+		return errors.toString();
 	}
 
 	/**

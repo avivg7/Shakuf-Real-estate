@@ -144,7 +144,7 @@ public class ApartmentManager {
 					
 					// String array for the labels
 					String[] LABEL_TEXTS_RENT = {
-							"Address",
+							 "Address",
 					         "Square Meter", 
 					         "Number Of Rooms", 
 					         "Client Name", 
@@ -171,10 +171,10 @@ public class ApartmentManager {
 				    	_counterID++;
 					} 
 				    
-				    else if( 
-				    		!RentApartment.isValidFields( squareMeter, numberOfRooms, price, address, clientName,rentalStartDate, rentalEndDate) 
-				    	){
-				    	GUI_Operator.showGUI_Massage("The action failed, you enterd invalid input");
+				    // Check for invalid input
+				    else if( !RentApartment.isValidFields( squareMeter, numberOfRooms, price, address, clientName,rentalStartDate, rentalEndDate) 
+				    		){
+				    	GUI_Operator.showGUI_Massage(RentApartment.validationError(squareMeter, numberOfRooms, price, address, clientName, rentalStartDate, rentalEndDate));
 				    }
 		
 				    else { 
@@ -222,14 +222,16 @@ public class ApartmentManager {
 				    entryDate = GUI.extractor("Entry Date dd-mm-yyyy");
 	
 				    
-				 // Check if the id already exist in the list and for invalid input
+				    // Check if the id already exist in the list 
 				    if ( this.isExist(_counterID + 1) ) {
 				    	GUI_Operator.showGUI_Massage("The action failed, the database is allready contain an apartment with similar ID, please try again");
 				    	_counterID++;
 					} 
 				    
-				    else if( !SellApartment.isValidFields( squareMeter, numberOfRooms, price, address, clientName, entryDate, offeredPrice)) {  
-				    	GUI_Operator.showGUI_Massage("The action failed, you enterd invalid input");
+				    // Check for invalid input
+				    else if( !SellApartment.isValidFields( squareMeter, numberOfRooms, price, address, clientName, entryDate, offeredPrice)
+				    		){  
+				    	GUI_Operator.showGUI_Massage(SellApartment.validationError(squareMeter, numberOfRooms, price, address, clientName, entryDate, offeredPrice));
 				    }
 		
 				    else { 

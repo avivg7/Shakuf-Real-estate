@@ -64,8 +64,45 @@ public class SellApartment extends Apartment {
 	 */	
 	public static boolean isValidFields( double squareMeter, int numberOfRooms, double price, String address, String clientName, String entryDate, double offeredPrice) {
 		return Apartment.isValidFields(squareMeter, numberOfRooms, price, address, clientName) &&
-				entryDate.matches("\\d{2}-\\d{2}-\\d{4}") && offeredPrice >=1 ;
+				entryDate.matches("\\d{2}-\\d{2}-\\d{4}") && 
+				offeredPrice >=1 &&
+				offeredPrice < Double.MAX_VALUE
+				;
 	}
+	
+	/**
+	 * * @return String - If and when the user insert invalid input this method will show hem what kind of invalid
+	 * input he inserted
+	 * 
+	 * @param squareMeter
+	 * @param numberOfRooms
+	 * @param price
+	 * @param address
+	 * @param clientName
+	 * @param entryDate
+	 * @param offeredPrice
+	 * @return
+	 */
+	public static String validationError( double squareMeter, int numberOfRooms, double price, String address, String clientName, String entryDate, double offeredPrice) {	
+		
+		StringBuilder errors = new StringBuilder(Apartment.validationError(squareMeter, numberOfRooms, price, address, clientName));
+		
+		if (offeredPrice < 1) {
+			errors.append("* Offerd Price parameter cannot be a negativ number !\n" );
+		}
+		
+		if (squareMeter >= Double.MAX_VALUE) {
+			errors.append("* Offerd Price parameter cannot be more then " + Double.MAX_VALUE +  "!\n" );
+		}
+		
+		if (!entryDate.matches("\\d{2}-\\d{2}-\\d{4}")) {
+			errors.append("* The Entry Date you enterd is does not match to date pattern (dd-mm-yyyy) \n" );
+		}
+			
+		return errors.toString();
+	}
+	
+	
 	
 	/**
 	 * Method that update the apartment's values
@@ -101,7 +138,7 @@ public class SellApartment extends Apartment {
 			 if(
 				 !SellApartment.isValidFields( squareMeter, numberOfRooms, price, address, clientName,entryDate, offeredPrice)
 				){    	
-				 		GUI_Operator.showGUI_Massage("The action failed, you enterd invalid input");
+			    	GUI_Operator.showGUI_Massage(SellApartment.validationError(squareMeter, numberOfRooms, price, address, clientName, entryDate, offeredPrice));
 			 } else { // Set new values
 				this.set_address(address);
 			    this.set_squareMeter(squareMeter);

@@ -57,7 +57,7 @@ public class RentApartment extends Apartment {
 	}
 	
 	/**
-	 * @return boolean - return True if the user input is valid
+	 * @return boolean - Return True if the user input is valid
 	 * 
 	 * @param double squareMeter 
 	 * @param int numberOfRooms 
@@ -66,8 +66,35 @@ public class RentApartment extends Apartment {
 	 * @param String clientName  
 	 */
 	public static boolean isValidFields( double squareMeter, int numberOfRooms, double price, String address, String clientName, String rentalStartDate, String rentalEndDate) {
-		return Apartment.isValidFields(squareMeter, numberOfRooms, price, address, clientName) &&
-				rentalStartDate.matches("\\d{2}-\\d{2}-\\d{4}") && rentalEndDate.matches("\\d{2}-\\d{2}-\\d{4}");
+		return (Apartment.isValidFields(squareMeter, numberOfRooms, price, address, clientName) &&
+				rentalStartDate.matches("\\d{2}-\\d{2}-\\d{4}") && rentalEndDate.matches("\\d{2}-\\d{2}-\\d{4}")); 	
+	}
+	
+	/**
+	 * @return String - If and when the user insert invalid input this method will show hem what kind of invalid
+	 * input he inserted
+	 * 
+	 * @param squareMeter
+	 * @param numberOfRooms
+	 * @param price
+	 * @param address
+	 * @param clientName
+	 * @param rentalStartDate
+	 * @param rentalEndDate
+	 * @return
+	 */
+	public static String validationError( double squareMeter, int numberOfRooms, double price, String address, String clientName, String rentalStartDate, String rentalEndDate) {
+		StringBuilder errors = new StringBuilder(Apartment.validationError(squareMeter, numberOfRooms, price, address, clientName));
+		
+		if (!rentalStartDate.matches("\\d{2}-\\d{2}-\\d{4}")) {
+			errors.append("* The Rental Start Date you enterd does not match to date pattern (dd-mm-yyyy) \n" );
+		}
+		
+		if (!rentalEndDate.matches("\\d{2}-\\d{2}-\\d{4}")) {
+			errors.append("* The Rental End Date you enterd does not match to date pattern (dd-mm-yyyy) \n" );
+		}
+		
+		return errors.toString();
 	}
 	
 	/**
@@ -78,7 +105,7 @@ public class RentApartment extends Apartment {
 		try {
 			// String array for the labels
 			String[] LABEL_TEXTS_RENT = {
-					"Address",
+					 "Address",
 			         "Square Meter", 
 			         "Number Of Rooms", 
 			         "Client Name", 
@@ -104,7 +131,8 @@ public class RentApartment extends Apartment {
 		    	!RentApartment.isValidFields( squareMeter, numberOfRooms, price, address, clientName,rentalStartDate, rentalEndDate)
 		    	){
 		    	
-			    GUI_Operator.showGUI_Massage("The action failed, you enterd invalid input");
+		    	GUI_Operator.showGUI_Massage(RentApartment.validationError(squareMeter, numberOfRooms, price, address, clientName, rentalStartDate, rentalEndDate));
+
 			} else { // Set new values
 				this.set_address(address);
 			    this.set_squareMeter(squareMeter);
