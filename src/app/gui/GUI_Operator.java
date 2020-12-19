@@ -53,6 +53,7 @@ public class GUI_Operator {
 		
 		// Create the GUI fields
 		for (int i = 0; i < LABEL_TEXTS.length; i++) { 
+			
 	    	label.add(new JLabel(LABEL_TEXTS[i], SwingConstants.LEFT));
 	    	textFieldsInputMap.put(LABEL_TEXTS[i], new JTextField());
 	    	controls.add(this.textFieldsInputMap.get(LABEL_TEXTS[i]));
@@ -63,12 +64,25 @@ public class GUI_Operator {
 		
 		// Add boarder for the text fields
 	    panel.add(controls, BorderLayout.CENTER);
+	    
 	    try {
-	    	JOptionPane.showConfirmDialog(null, panel, GUI_Text, JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+	    	
+	    	JOptionPane.showConfirmDialog(
+	    			null, 
+	    			panel, 
+	    			GUI_Text, 
+	    			JOptionPane.OK_CANCEL_OPTION, 
+	    			JOptionPane.PLAIN_MESSAGE
+	    			);
 			
+	    	
 		    // Extract and catalog the input by labels
 		    for (int i = 0; i < LABEL_TEXTS.length; i++) {
-				inputExtractor.put(LABEL_TEXTS[i], textFieldsInputMap.get(LABEL_TEXTS[i]).getText().toString().trim());
+		    	
+				inputExtractor.put(
+						LABEL_TEXTS[i], 
+						textFieldsInputMap.get( LABEL_TEXTS[i] ).getText().toString().trim() 
+						);
 			}
 		    
 		} catch (Exception e) {

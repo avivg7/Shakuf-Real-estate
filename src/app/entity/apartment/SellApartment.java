@@ -85,7 +85,13 @@ public class SellApartment extends Apartment {
 	 */
 	public static String validationError( double squareMeter, int numberOfRooms, double price, String address, String clientName, String entryDate, double offeredPrice) {	
 		
-		StringBuilder errors = new StringBuilder(Apartment.validationError(squareMeter, numberOfRooms, price, address, clientName));
+		StringBuilder errors = new StringBuilder(
+				Apartment.validationError(
+						squareMeter, 
+						numberOfRooms, 
+						price, address, 
+						clientName)
+				);
 		
 		if (offeredPrice < 1) {
 			errors.append("* Offerd Price parameter cannot be a negativ number !\n" );
@@ -127,19 +133,60 @@ public class SellApartment extends Apartment {
 			
 		    // Take input from the text fields 
 		     String address = GUI.extractor("Address");
-			 double squareMeter = ApartmentManager.roundedDouble(Double.parseDouble(GUI.extractor("Square Meter")));
-			 int numberOfRooms = Integer.parseInt(GUI.extractor("Number Of Rooms"));
+		     
+			 double squareMeter = ApartmentManager.roundedDouble(
+					 Double.parseDouble(
+							 GUI.extractor( "Square Meter" )
+							 )
+					 );
+			 
+			 int numberOfRooms = Integer.parseInt(
+					 GUI.extractor( "Number Of Rooms" )
+					 );
+			 
 			 String clientName = GUI.extractor("Client Name");
-			 double price = ApartmentManager.roundedDouble(Double.parseDouble(GUI.extractor("Price"))); 
-			 double offeredPrice = ApartmentManager.roundedDouble(Double.parseDouble(GUI.extractor("Offered Price"))); 
+			 
+			 double price = ApartmentManager.roundedDouble(
+					 Double.parseDouble(
+							 GUI.extractor("Price")
+							 )
+					 ); 
+			 
+			 double offeredPrice = ApartmentManager.roundedDouble(
+					 Double.parseDouble(
+							 GUI.extractor("Offered Price")
+							 )
+					 ); 
+			 
 			 String entryDate = GUI.extractor("Entry Date (dd-mm-yyyy)");
 		    
 			 // Check for invalid input
-			 if(
-				 !SellApartment.isValidFields( squareMeter, numberOfRooms, price, address, clientName,entryDate, offeredPrice)
-				){    	
-			    	GUI_Operator.showGUI_Massage(SellApartment.validationError(squareMeter, numberOfRooms, price, address, clientName, entryDate, offeredPrice));
-			 } else { // Set new values
+			 if( !SellApartment.isValidFields( 
+						 squareMeter, 
+						 numberOfRooms, 
+						 price, address, 
+						 clientName,
+						 entryDate, 
+						 offeredPrice
+						 )
+				)
+			 {    	
+			    	GUI_Operator.showGUI_Massage(
+			    			SellApartment.validationError(
+			    					squareMeter, 
+			    					numberOfRooms, 
+			    					price, address, 
+			    					clientName, 
+			    					entryDate, 
+			    					offeredPrice
+			    					)
+			    			);
+			    	
+			 } 
+			 
+			// Set new values
+			 else 
+			 { 
 				this.set_address(address);
 			    this.set_squareMeter(squareMeter);
 			    this.set_numberOfRooms(numberOfRooms);

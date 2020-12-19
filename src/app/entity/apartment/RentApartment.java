@@ -25,6 +25,7 @@ public class RentApartment extends Apartment {
 	 */
 	public RentApartment(String _address, long _id, double _squareMeter, int _numberOfRooms, String _clientName, double _price, 
 			 String _rentlStartDate, String _rentalEndDate) {
+		
 		super(_address, _id, _squareMeter, _numberOfRooms, _clientName, _price);
 		this._rentalStartDate = _rentlStartDate;
 		this._rentalEndDate = _rentalEndDate;
@@ -67,7 +68,9 @@ public class RentApartment extends Apartment {
 	 */
 	public static boolean isValidFields( double squareMeter, int numberOfRooms, double price, String address, String clientName, String rentalStartDate, String rentalEndDate) {
 		return (Apartment.isValidFields(squareMeter, numberOfRooms, price, address, clientName) &&
-				rentalStartDate.matches("\\d{2}-\\d{2}-\\d{4}") && rentalEndDate.matches("\\d{2}-\\d{2}-\\d{4}")); 	
+				rentalStartDate.matches("\\d{2}-\\d{2}-\\d{4}") && 
+				rentalEndDate.matches("\\d{2}-\\d{2}-\\d{4}")
+				); 	
 	}
 	
 	/**
@@ -84,6 +87,7 @@ public class RentApartment extends Apartment {
 	 * @return
 	 */
 	public static String validationError( double squareMeter, int numberOfRooms, double price, String address, String clientName, String rentalStartDate, String rentalEndDate) {
+		
 		StringBuilder errors = new StringBuilder(Apartment.validationError(squareMeter, numberOfRooms, price, address, clientName));
 		
 		if (!rentalStartDate.matches("\\d{2}-\\d{2}-\\d{4}")) {
@@ -118,22 +122,57 @@ public class RentApartment extends Apartment {
 			GUI_Operator GUI = new GUI_Operator(LABEL_TEXTS_RENT, "Update apartment values");
 			
 		    // Take input from the text fields
-		     String address = GUI.extractor("Address");
-			 double squareMeter = ApartmentManager.roundedDouble(Double.parseDouble(GUI.extractor("Square Meter")));
-			 int numberOfRooms = Integer.parseInt(GUI.extractor("Number Of Rooms"));
+		     String address = GUI.extractor( "Address" );
+		     
+			 double squareMeter = ApartmentManager.roundedDouble(
+					 Double.parseDouble(
+							 GUI.extractor( "Square Meter" )
+							 )
+					 );
+			 
+			 int numberOfRooms = Integer.parseInt(
+					 GUI.extractor( "Number Of Rooms" )
+					 );
+			 
 			 String clientName = GUI.extractor("Client Name");
-			 double price = ApartmentManager.roundedDouble(Double.parseDouble(GUI.extractor("Price"))); 
+			 
+			 double price = ApartmentManager.roundedDouble(
+					 Double.parseDouble(
+							 GUI.extractor("Price")
+							 )
+					 ); 
+			 
 			 String rentalStartDate = GUI.extractor("Start Date (dd-mm-yyyy)");
+			 
 			 String rentalEndDate = GUI.extractor("End Date (dd-mm-yyyy)");
 			 
 			// Check for invalid input
 		    if(
-		    	!RentApartment.isValidFields( squareMeter, numberOfRooms, price, address, clientName,rentalStartDate, rentalEndDate)
-		    	){
+		    	!RentApartment.isValidFields( 
+		    			squareMeter, 
+		    			numberOfRooms, 
+		    			price, address, 
+		    			clientName,
+		    			rentalStartDate, 
+		    			rentalEndDate
+		    			)
+		    	)
 		    	
-		    	GUI_Operator.showGUI_Massage(RentApartment.validationError(squareMeter, numberOfRooms, price, address, clientName, rentalStartDate, rentalEndDate));
+		    {   	
+		    	GUI_Operator.showGUI_Massage(RentApartment.validationError(
+		    			squareMeter, 
+		    			numberOfRooms, 
+		    			price, address, 
+		    			clientName, 
+		    			rentalStartDate, 
+		    			rentalEndDate)
+		    			);
 
-			} else { // Set new values
+			} 
+		    
+		    // Set new values
+		    else 
+		    {
 				this.set_address(address);
 			    this.set_squareMeter(squareMeter);
 			    this.set_numberOfRooms(numberOfRooms);

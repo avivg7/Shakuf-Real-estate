@@ -54,6 +54,7 @@ public class GUI_Table {
 			
 			// Set apartments data in the table
 			for (int i = 0, j = 1; i < _apartments.size(); i++,j++) {
+				
 				data[j] = _apartments.get(i).getAllParam().split(",");
 			}			
 		

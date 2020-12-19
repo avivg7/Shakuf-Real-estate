@@ -1,6 +1,5 @@
 package app.entity.apartment;
 import javax.swing.*;
-
 import app.entity.apartment.sort.IdComparator;
 import app.entity.apartment.sort.NameComparator;
 import app.entity.apartment.sort.PriceComparator;
@@ -157,11 +156,27 @@ public class ApartmentManager {
 					
 				    // Take input from the GUI
 				    address = GUI.extractor("Address");
-				    squareMeter = roundedDouble(Double.parseDouble(GUI.extractor("Square Meter")));
-				    numberOfRooms = Integer.parseInt(GUI.extractor("Number Of Rooms"));
+				    
+				    squareMeter = roundedDouble(
+				    			Double.parseDouble(
+				    					GUI.extractor("Square Meter")
+				    					)
+				    			);
+				    
+				    numberOfRooms = Integer.parseInt(
+				    		GUI.extractor("Number Of Rooms")
+				    		);
+				    
 				    clientName = GUI.extractor("Client Name");
-				    price = roundedDouble(Double.parseDouble(GUI.extractor("Price")));
+				    
+				    price = roundedDouble(
+				    			Double.parseDouble(
+				    					GUI.extractor("Price")
+				    					)
+				    			);
+				    
 				    rentalStartDate = GUI.extractor("Start Date (dd-mm-yyyy)");
+				    
 				    rentalEndDate = GUI.extractor("End Date (dd-mm-yyyy)");
 				    				    
 				    // Check if the id already exist in the list and for invalid input
@@ -171,12 +186,32 @@ public class ApartmentManager {
 					} 
 				    
 				    // Check for invalid input
-				    else if( !RentApartment.isValidFields( squareMeter, numberOfRooms, price, address, clientName,rentalStartDate, rentalEndDate) 
-				    		){
-				    	GUI_Operator.showGUI_Massage(RentApartment.validationError(squareMeter, numberOfRooms, price, address, clientName, rentalStartDate, rentalEndDate));
+				    else if( !RentApartment.isValidFields( 
+				    		squareMeter, 
+				    		numberOfRooms, 
+				    		price, 
+				    		address, 
+				    		clientName,
+				    		rentalStartDate, 
+				    		rentalEndDate
+				    		
+				    		) 				    		
+				    	)
+				    {
+				    	GUI_Operator.showGUI_Massage(
+				    			RentApartment.validationError(
+				    					squareMeter, 
+				    					numberOfRooms, 
+				    					price, address, 
+				    					clientName, 
+				    					rentalStartDate, 
+				    					rentalEndDate
+				    				)
+				    			);
 				    }
 		
-				    else { 
+				    else 
+				    { 
 						// Advanced the counter and create a new apartment in the list
 						_counterID++;
 						this._apartments.add( 
@@ -213,11 +248,26 @@ public class ApartmentManager {
 					    
 				    // Take input from the text fields
 					address = GUI.extractor("Address");
-				    squareMeter = roundedDouble(Double.parseDouble(GUI.extractor("Square Meter")));
-				    numberOfRooms = Integer.parseInt(GUI.extractor("Number Of Rooms"));
+					
+				    squareMeter = roundedDouble(
+				    		Double.parseDouble(
+				    				GUI.extractor("Square Meter"))
+				    		);
+				    
+				    numberOfRooms = Integer.parseInt(
+				    		GUI.extractor("Number Of Rooms")
+				    		);
+				    
 				    clientName = GUI.extractor("Client Name");
-				    price = roundedDouble(Double.parseDouble(GUI.extractor("Price")));
-				    offeredPrice = roundedDouble(Double.parseDouble(GUI.extractor("Offered Price")));
+				    
+				    price = roundedDouble(
+				    		Double.parseDouble(
+				    				GUI.extractor("Price")));
+				    
+				    offeredPrice = roundedDouble(
+				    		Double.parseDouble(GUI.extractor(
+				    				"Offered Price")));
+				    
 				    entryDate = GUI.extractor("Entry Date dd-mm-yyyy");
 	
 				    
@@ -228,9 +278,27 @@ public class ApartmentManager {
 					} 
 				    
 				    // Check for invalid input
-				    else if( !SellApartment.isValidFields( squareMeter, numberOfRooms, price, address, clientName, entryDate, offeredPrice)
-				    		){  
-				    	GUI_Operator.showGUI_Massage(SellApartment.validationError(squareMeter, numberOfRooms, price, address, clientName, entryDate, offeredPrice));
+				    else if( !SellApartment.isValidFields( 
+				    		squareMeter, 
+				    		numberOfRooms, 
+				    		price, address, 
+				    		clientName, 
+				    		entryDate, 
+				    		offeredPrice
+				    		)
+				    	)
+				    {  
+				    	
+				    	GUI_Operator.showGUI_Massage(
+				    			SellApartment.validationError(
+				    					squareMeter, 
+				    					numberOfRooms, 
+				    					price, address, 
+				    					clientName, 
+				    					entryDate, 
+				    					offeredPrice
+				    					)
+				    			);
 				    }
 		
 				    else { 
@@ -312,15 +380,15 @@ public class ApartmentManager {
 					switch ( userSelection ) {
 					
 						case "Sort by Price":
-							this.sorter(new PriceComparator());
+							this.sorter( new PriceComparator() );
 							break;
 						
 						case "Sort by Client Names":
-							this.sorter(new NameComparator());
+							this.sorter( new NameComparator() );
 							break;
 							
 						case "Sort by ID's":
-							this.sorter(new IdComparator());
+							this.sorter( new IdComparator() );
 							break;
 					
 						default:
@@ -329,7 +397,7 @@ public class ApartmentManager {
 					
 				} 
 				catch (Exception e) {
-					GUI_Operator.showGUI_Massage("Somthing went wrong, please try again");
+					GUI_Operator.showGUI_Massage( "Somthing went wrong, please try again" );
 				}
 	}
 		
@@ -338,7 +406,10 @@ public class ApartmentManager {
 	 * @param comparator - the method we will sort the apartment by
 	 */
 	public void sorter(Comparator<Apartment> comparator) {
+		// Sort with the comparator
 		Collections.sort(_apartments, comparator);
+		
+		// Show massage to the user
 		GUI_Operator.showGUI_Massage("The apartments were successfully sorted");
 	}
 	
@@ -400,9 +471,11 @@ public class ApartmentManager {
 				
 				// We will look for an apartment with the ID , if we will found it then the user will   
 				// be able to choose to perform actions on the apartments that match the search
-				if (isExist(Long.parseLong(findID))) {
-					this.actionsOnApartment(getApartmentByID(findID));
+				if ( isExist( Long.parseLong(findID) ) ) 
+				{
+					this.actionsOnApartment( getApartmentByID(findID) );
 				}
+				
 				else 
 				{
 					// if the ID not found
@@ -423,8 +496,11 @@ public class ApartmentManager {
 			
 			// Collect all the apartment connected to the client name from the input
 			ArrayList<Apartment> nameApartments = new ArrayList<>();
+			
 			for (Apartment apartment : _apartments) {
-				if (findName.toLowerCase().equals(apartment.get_clientName().toLowerCase())) {
+				if ( findName.toLowerCase().equals( 
+						apartment.get_clientName().toLowerCase() ) ) 
+				{
 					nameApartments.add(apartment);
 				}
 			}
@@ -434,11 +510,9 @@ public class ApartmentManager {
 			
 		} 
 		catch (Exception e) {
-			GUI_Operator.showGUI_Massage("Somthing went wrong, please try again");
+			GUI_Operator.showGUI_Massage( "Somthing went wrong, please try again" );
 		}
-		
-		
-		
+			
 	}
 	
 	/**
@@ -446,20 +520,22 @@ public class ApartmentManager {
 	 */
 	public void selectIdFromList() {
 		try {
+			
 			// Collect all the ID's from the apartments list
 			String[] ID_Options = new String[_apartments.size()];
+			
 			for (int i = 0; i < _apartments.size(); i++) {
-				ID_Options[i] = String.valueOf(_apartments.get(i).getID());
+				ID_Options[i] = String.valueOf( _apartments.get(i).getID() );
 			}
 			
 			// Use GUI to show the list of ID's to the user and he return the chosen ID
-			String userSelection = GUI_Operator.getUserSelection(ID_Options, "Select the wanted ID", "Select the wanted ID 2");
+			String userSelection = GUI_Operator.getUserSelection( ID_Options, "Select the wanted ID", "Select the wanted ID 2" );
 			
 			// Give the user the option to perform actions on the selected apartment 
-			this.actionsOnApartment(getApartmentByID(userSelection));
+			this.actionsOnApartment( getApartmentByID( userSelection ) );
 			
 		} catch (Exception e) {
-			GUI_Operator.showGUI_Massage("Somthing went wrong, please try again");
+			GUI_Operator.showGUI_Massage( "Somthing went wrong, please try again" );
 		}
 	}
 
@@ -470,8 +546,10 @@ public class ApartmentManager {
 	 * @return Apartment -The apartment with the ID 
 	 */
 	public Apartment getApartmentByID(String ID) {
+		
 		for (Apartment apartment : _apartments) {
-			if (apartment.getID()== Long.parseLong(ID)) {
+			
+			if (apartment.getID() == Long.parseLong(ID)) {
 				return apartment;
 			}
 		}
@@ -509,6 +587,7 @@ public class ApartmentManager {
 					// remove the chosen apartment from the list
 					_apartments.remove(apartment);
 					GUI_Operator.showGUI_Massage("Successfully removed from the list");
+					
 				} catch (Exception e) {
 					
 					// if something went wrong while trying to remove the object from the list
