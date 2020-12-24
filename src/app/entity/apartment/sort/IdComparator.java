@@ -1,12 +1,11 @@
 package app.entity.apartment.sort;
 import java.util.Comparator;
-import app.entity.apartment.Apartment;
 
 //Comparator for sorting apartments according to Id order
-public class IdComparator implements Comparator<Apartment> {
+public class IdComparator implements Comparator<ISortable> {
 
 	@Override
-	public int compare(Apartment a1, Apartment a2) {
+	public int compare(ISortable a1, ISortable a2) {
 		return (int)(a1.getID() - a2.getID());			
 	}
 

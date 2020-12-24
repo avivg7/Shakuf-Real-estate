@@ -2,13 +2,11 @@ package app.entity.apartment.sort;
 
 import java.util.Comparator;
 
-import app.entity.apartment.Apartment;
-
 //Comparator for sorting apartments according to Client Name
-public class NameComparator implements Comparator<Apartment> {
+public class NameComparator implements Comparator<ISortable> {
 
 	@Override
-	public int compare(Apartment a1, Apartment a2) {
+	public int compare(ISortable a1, ISortable a2) {
 		return a1.get_clientName().compareTo(a2.get_clientName());
 		
 	}
