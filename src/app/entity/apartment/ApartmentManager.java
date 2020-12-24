@@ -1,5 +1,7 @@
 package app.entity.apartment;
+
 import javax.swing.*;
+import app.entity.apartment.sort.ISortable;
 import app.entity.apartment.sort.IdComparator;
 import app.entity.apartment.sort.NameComparator;
 import app.entity.apartment.sort.PriceComparator;
@@ -405,7 +407,7 @@ public class ApartmentManager {
 	 * Sort all the apartments value in the list, the method uses Comparator
 	 * @param comparator - the method we will sort the apartment by
 	 */
-	public void sorter(Comparator<Apartment> comparator) {
+	public void sorter(Comparator<ISortable> comparator) {
 		// Sort with the comparator
 		Collections.sort(_apartments, comparator);
 		

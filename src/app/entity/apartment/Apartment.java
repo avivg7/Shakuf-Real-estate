@@ -1,11 +1,12 @@
 package app.entity.apartment;
 
 import app.entity.Entity;
+import app.entity.apartment.sort.ISortable;
 
 /**  
  * Entity of type Apartment, abstract class
  */
-public abstract class Apartment extends Entity {
+public abstract class Apartment extends Entity implements ISortable {
 
 	private String _address;
 	private double _squareMeter;
