@@ -26,11 +26,11 @@ The user can choose to sort his list of apartments, he has three options to sort
   <li>Sort by Client Names</li>
   <li>Sort by ID's</li>
 </ul>
-<img src="readme_images/main_menu.jpeg">
+<img src="readme_images/sort.jpeg">
 
 <h3>Show all apartments</h3>
 This option will show the user the list of apartments.
-<img src="readme_images/main_menu.jpeg">
+<img src="readme_images/show.jpeg">
 
 <h3>Exit</h3>
 This option will close the window and exit the program.
